@@ -1,12 +1,6 @@
-C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\bin\Debug\ElapsEncryption.exe.config
-C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\bin\Debug\ElapsEncryption.exe
-C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\bin\Debug\ElapsEncryption.pdb
 C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryption.csproj.AssemblyReference.cache
-C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryption.Properties.Resources.resources
 C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryption.csproj.GenerateResource.cache
 C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryption.csproj.CoreCompileInputs.cache
-C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryption.exe
-C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryption.pdb
 C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryption.Form1.resources
 C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryption.Form2.resources
 C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\bin\Debug\ElapsEncryptor.exe.config
@@ -20,3 +14,9 @@ C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\Elap
 C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\obj\Debug\ElapsEncryption.csproj.CoreCompileInputs.cache
 C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\obj\Debug\ElapsEncryptor.exe
 C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\obj\Debug\ElapsEncryptor.pdb
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\bin\Debug\ElapsEncryptor.exe.config
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\bin\Debug\ElapsEncryptor.exe
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\bin\Debug\ElapsEncryptor.pdb
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryptor.Properties.Resources.resources
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryptor.exe
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryptor.pdb
