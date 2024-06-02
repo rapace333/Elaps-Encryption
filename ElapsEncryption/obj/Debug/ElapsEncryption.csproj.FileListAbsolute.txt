@@ -9,3 +9,14 @@ C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\Elap
 C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryption.pdb
 C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryption.Form1.resources
 C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Debug\ElapsEncryption.Form2.resources
+C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\bin\Debug\ElapsEncryptor.exe.config
+C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\bin\Debug\ElapsEncryptor.exe
+C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\bin\Debug\ElapsEncryptor.pdb
+C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\obj\Debug\ElapsEncryption.csproj.AssemblyReference.cache
+C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\obj\Debug\ElapsEncryption.Form1.resources
+C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\obj\Debug\ElapsEncryption.Form2.resources
+C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\obj\Debug\ElapsEncryptor.Properties.Resources.resources
+C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\obj\Debug\ElapsEncryption.csproj.GenerateResource.cache
+C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\obj\Debug\ElapsEncryption.csproj.CoreCompileInputs.cache
+C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\obj\Debug\ElapsEncryptor.exe
+C:\Users\user\OneDrive\Bureau\1\Programmation\C#\Logiciels\Elaps-Encryption\ElapsEncryption\obj\Debug\ElapsEncryptor.pdb

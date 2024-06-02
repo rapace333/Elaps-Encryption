@@ -19,6 +19,18 @@ namespace ElapsEncryption
 {
     public partial class Form1 : Form
     {
+        private Timer opacityTimer;
+        private const int transitionDuration = 500;
+        private const int timerInterval = 20;
+        private double targetOpacity = 1.0;
+        private bool changesMade = false; // Variable to track unsaved changes
+
+        private const int WM_NCLBUTTONDOWN = 0xA1;
+        private const int HT_CAPTION = 0x2;
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool ReleaseCapture();
 
         EncryptionCore encryptionCore = new EncryptionCore();
         private static readonly RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
@@ -26,11 +38,20 @@ namespace ElapsEncryption
         public Form1()
         {
             InitializeComponent();
+            Opacity = 0;
+        }
+
+        private void StartOpacityTransition()
+        {
+            opacityTimer = new System.Windows.Forms.Timer();
+            opacityTimer.Interval = timerInterval;
+            opacityTimer.Tick += timer1_Tick;
+            opacityTimer.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            StartOpacityTransition();
         }
 
 
@@ -53,19 +74,19 @@ namespace ElapsEncryption
                 }
                 else
                 {
-                    Console.WriteLine("Le dossier spécifié n'existe pas : " + folderPath);
+                    Console.WriteLine("The specified folder does not exist : " + folderPath);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Une erreur s'est produite : " + ex.Message);
+                Console.WriteLine("An error has occurred : " + ex.Message);
             }
         }
 
         private void Encrypte(object sender, EventArgs e)
         {
 
-            string password = InputBox.Show("Entrez votre mot de passe :", "Saisie du mot de passe");
+            string password = InputBox.Show("Enter your password:", "Password");
 
             string decryptedFolderPath = Path.Combine(appDirectory, "files\\decrypted\\");
 
@@ -84,19 +105,19 @@ namespace ElapsEncryption
                 }
                 else
                 {
-                    Console.WriteLine("Le dossier spécifié n'existe pas : " + decryptedFolderPath);
+                    Console.WriteLine("The specified folder does not exist : " + decryptedFolderPath);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Une erreur s'est produite : " + ex.Message);
+                Console.WriteLine("An error has occurred : " + ex.Message);
             }
         }
 
         private void Decrypte(object sender, EventArgs e)
         {
 
-            string password = InputBox.Show("Entrez votre mot de passe :", "Saisie du mot de passe");
+            string password = InputBox.Show("Enter your password:", "Password");
 
             string encryptedFolderPath = Path.Combine(appDirectory, "files\\encrypted\\");
 
@@ -114,12 +135,12 @@ namespace ElapsEncryption
                 }
                 else
                 {
-                    Console.WriteLine("Le dossier spécifié n'existe pas : " + encryptedFolderPath);
+                    Console.WriteLine("The specified folder does not exist : " + encryptedFolderPath);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Une erreur s'est produite : " + ex.Message);
+                Console.WriteLine("An error has occurred : " + ex.Message);
             }
         }
 
@@ -127,8 +148,8 @@ namespace ElapsEncryption
         {
 
 
-            string message = "Êtes-vous sûr de vouloir supprimer le fichier décrypté ?\n\n(Assurez-vous de l'avoir correctement sauvegardé)";
-            string caption = "Confirmation de suppression";
+            string message = "Are you sure you want to delete the decrypted file?\n\n(Make sure you have backed it up correctly)";
+            string caption = "Deletion confirmation";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             MessageBoxIcon icon = MessageBoxIcon.Warning;
 
@@ -150,16 +171,16 @@ namespace ElapsEncryption
                         try
                         {
                             encryptionCore.SecureDeleteFile(filePath);
-                            Console.WriteLine("Le fichier a été sécurisé et supprimé.");
+                            Console.WriteLine("The file has been secured and deleted.");
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine($"Erreur lors de la sécurisation et de la suppression du fichier : {ex.Message}");
+                            Console.WriteLine($"Error securing and deleting file : {ex.Message}");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Le fichier spécifié n'existe pas.");
+                        Console.WriteLine("The specified file does not exist.");
                     }
                 }
             }
@@ -179,7 +200,7 @@ namespace ElapsEncryption
                 label.Text = prompt;
 
                 buttonOk.Text = "OK";
-                buttonCancel.Text = "Annuler";
+                buttonCancel.Text = "Cancel";
                 buttonOk.DialogResult = DialogResult.OK;
                 buttonCancel.DialogResult = DialogResult.Cancel;
 
@@ -189,7 +210,7 @@ namespace ElapsEncryption
                 buttonCancel.SetBounds(309, 72, 75, 23);
 
                 label.AutoSize = true;
-                textBox.PasswordChar = '*';
+                textBox.PasswordChar = '•';
                 textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
                 buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
                 buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
@@ -220,6 +241,37 @@ namespace ElapsEncryption
         {
             Form2 form2 = new Form2();
             form2.ShowDialog();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            double opacityIncrement = timerInterval / (double)transitionDuration;
+            Opacity += opacityIncrement;
+
+            if (Opacity >= targetOpacity)
+            {
+                Opacity = targetOpacity;
+                opacityTimer.Stop();
+            }
         }
     }
 }
