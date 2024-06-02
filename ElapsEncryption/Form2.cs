@@ -43,9 +43,6 @@ namespace ElapsEncryption
             if (checkBox1.Checked)
             {
                 AllocConsole();
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("The statuses will be displayed here.\n");
-                Console.ForegroundColor = ConsoleColor.White;
             }
             else
             {
