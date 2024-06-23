@@ -1,0 +1,11 @@
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\bin\Release\ElapsEncryptor.exe.config
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\bin\Release\ElapsEncryptor.exe
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\bin\Release\ElapsEncryptor.pdb
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\ElapsEncryption.csproj.AssemblyReference.cache
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\ElapsEncryption.Form1.resources
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\ElapsEncryption.Form2.resources
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\ElapsEncryptor.Properties.Resources.resources
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\ElapsEncryption.csproj.GenerateResource.cache
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\ElapsEncryption.csproj.CoreCompileInputs.cache
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\ElapsEncryptor.exe
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\ElapsEncryptor.pdb

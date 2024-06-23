@@ -70,10 +70,6 @@ namespace ElapsEncryption
             }
         }
 
-
-
-
-
         public void SecureDeleteFile(string filePath)
         {
             const int bufferSize = 1024;
@@ -142,34 +138,52 @@ namespace ElapsEncryption
 
         public string DecryptString(string encryptedText, string password)
         {
-            byte[] resultBytes = Convert.FromBase64String(encryptedText);
-            byte[] salt = new byte[16];
-            byte[] encryptedBytes = new byte[resultBytes.Length - salt.Length];
-
-            Buffer.BlockCopy(resultBytes, 0, salt, 0, salt.Length);
-            Buffer.BlockCopy(resultBytes, salt.Length, encryptedBytes, 0, encryptedBytes.Length);
-
-            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-
-            using (Aes aesAlg = Aes.Create())
+            try
             {
-                Rfc2898DeriveBytes keyDerivation = new Rfc2898DeriveBytes(passwordBytes, salt, 10000);
+                byte[] resultBytes = Convert.FromBase64String(encryptedText);
+                byte[] salt = new byte[16];
+                byte[] encryptedBytes = new byte[resultBytes.Length - salt.Length];
 
-                aesAlg.Key = keyDerivation.GetBytes(aesAlg.KeySize / 8);
-                aesAlg.IV = keyDerivation.GetBytes(aesAlg.BlockSize / 8);
+                Buffer.BlockCopy(resultBytes, 0, salt, 0, salt.Length);
+                Buffer.BlockCopy(resultBytes, salt.Length, encryptedBytes, 0, encryptedBytes.Length);
 
-                using (MemoryStream msDecrypt = new MemoryStream(encryptedBytes))
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+
+                using (Aes aesAlg = Aes.Create())
                 {
-                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, aesAlg.CreateDecryptor(), CryptoStreamMode.Read))
+                    Rfc2898DeriveBytes keyDerivation = new Rfc2898DeriveBytes(passwordBytes, salt, 10000);
+
+                    aesAlg.Key = keyDerivation.GetBytes(aesAlg.KeySize / 8);
+                    aesAlg.IV = keyDerivation.GetBytes(aesAlg.BlockSize / 8);
+
+                    using (MemoryStream msDecrypt = new MemoryStream(encryptedBytes))
                     {
-                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                        using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, aesAlg.CreateDecryptor(), CryptoStreamMode.Read))
                         {
-                            return srDecrypt.ReadToEnd();
+                            using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                            {
+                                string result = srDecrypt.ReadToEnd();
+                                Console.WriteLine("Successfully decrypted " + result);
+                                return result;
+                            }
                         }
                     }
                 }
             }
+            catch (CryptographicException)
+            {
+                // This exception is thrown when the decryption fails, typically due to an incorrect password.
+                Console.WriteLine("Error: Incorrect password or corrupted data, when trying to decrypt " + encryptedText);
+                return "*";
+            }
+            catch (Exception ex)
+            {
+                // This handles any other exceptions that may occur.
+                Console.WriteLine("Error: " + ex.Message);
+                return "*";
+            }
         }
+
 
         private byte[] GenerateRandomSalt()
         {

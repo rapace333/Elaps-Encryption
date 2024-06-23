@@ -130,7 +130,10 @@ namespace ElapsEncryption
                     foreach (string filePath in files)
                     {
                         string decryptedString = encryptionCore.DecryptString(Path.GetFileNameWithoutExtension(filePath).Replace("$", "/"), password);
-                        encryptionCore.DecryptFile(filePath, Path.Combine(appDirectory, "files\\decrypted\\" + decryptedString), password);
+                        if (decryptedString != "*")
+                        {
+                            encryptionCore.DecryptFile(filePath, Path.Combine(appDirectory, "files\\decrypted\\" + decryptedString), password);
+                        }
                     }
                 }
                 else
