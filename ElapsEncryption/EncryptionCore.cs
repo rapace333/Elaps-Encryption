@@ -183,8 +183,6 @@ namespace ElapsEncryption
                 return "*";
             }
         }
-
-
         private byte[] GenerateRandomSalt()
         {
             byte[] salt = new byte[16];

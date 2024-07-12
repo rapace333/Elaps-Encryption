@@ -35,6 +35,7 @@ namespace ElapsEncryption
         EncryptionCore encryptionCore = new EncryptionCore();
         private static readonly RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
         static string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        static string fileFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Elaps\\ElapsEncryption" );
         public Form1()
         {
             InitializeComponent();
@@ -57,12 +58,18 @@ namespace ElapsEncryption
 
         private void OpenFolder(object sender, EventArgs e)
         {
+            if(!Directory.Exists(Path.Combine(fileFolder, "files")))
+            {
+                Directory.CreateDirectory(Path.Combine(fileFolder, "files\\encrypted"));
+                Directory.CreateDirectory(Path.Combine(fileFolder, "files\\decrypted"));
+                System.IO.File.Copy(Path.Combine(appDirectory, "files\\README.txt"), Path.Combine(fileFolder, "files\\README.txt"));
+            }
 
-            string folderPath = Path.Combine(appDirectory, "files");
+            string folderPath = Path.Combine(fileFolder, "files");
 
             try
             {
-                if (System.IO.Directory.Exists(folderPath))
+                if (Directory.Exists(folderPath))
                 {
                     ProcessStartInfo startInfo = new ProcessStartInfo
                     {
@@ -83,12 +90,12 @@ namespace ElapsEncryption
             }
         }
 
-        private void Encrypte(object sender, EventArgs e)
+        private void Encrypt(object sender, EventArgs e)
         {
 
             string password = InputBox.Show("Enter your password:", "Password");
 
-            string decryptedFolderPath = Path.Combine(appDirectory, "files\\decrypted\\");
+            string decryptedFolderPath = Path.Combine(fileFolder, "files\\decrypted\\");
 
             try
             {
@@ -100,7 +107,7 @@ namespace ElapsEncryption
                     {
                         string encryptedString = encryptionCore.EncryptString(Path.GetFileName(filePath), password).Replace("/", "$");
 
-                        encryptionCore.EncryptFile(filePath, Path.Combine(appDirectory, "files\\encrypted\\" + encryptedString + ".ElapsEncryption"), password);
+                        encryptionCore.EncryptFile(filePath, Path.Combine(fileFolder, "files\\encrypted\\" + encryptedString + ".ElapsEncryption"), password);
                     }
                 }
                 else
@@ -114,12 +121,12 @@ namespace ElapsEncryption
             }
         }
 
-        private void Decrypte(object sender, EventArgs e)
+        private void Decrypt(object sender, EventArgs e)
         {
 
             string password = InputBox.Show("Enter your password:", "Password");
 
-            string encryptedFolderPath = Path.Combine(appDirectory, "files\\encrypted\\");
+            string encryptedFolderPath = Path.Combine(fileFolder, "files\\encrypted\\");
 
             try
             {
@@ -132,7 +139,7 @@ namespace ElapsEncryption
                         string decryptedString = encryptionCore.DecryptString(Path.GetFileNameWithoutExtension(filePath).Replace("$", "/"), password);
                         if (decryptedString != "*")
                         {
-                            encryptionCore.DecryptFile(filePath, Path.Combine(appDirectory, "files\\decrypted\\" + decryptedString), password);
+                            encryptionCore.DecryptFile(filePath, Path.Combine(fileFolder, "files\\decrypted\\" + decryptedString), password);
                         }
                     }
                 }
@@ -160,11 +167,7 @@ namespace ElapsEncryption
 
             if (result == DialogResult.Yes)
             {
-
-
-
-
-                string decryptedFolderPath = Path.Combine(appDirectory, "files\\decrypted\\");
+                string decryptedFolderPath = Path.Combine(fileFolder, "files\\decrypted\\");
                 string[] files = Directory.GetFiles(decryptedFolderPath);
 
                 foreach (string filePath in files)
