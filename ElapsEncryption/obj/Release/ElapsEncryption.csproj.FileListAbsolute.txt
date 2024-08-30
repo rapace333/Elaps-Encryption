@@ -9,3 +9,5 @@ C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\El
 C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\ElapsEncryption.csproj.CoreCompileInputs.cache
 C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\ElapsEncryptor.exe
 C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\ElapsEncryptor.pdb
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\Interop.Shell32.dll
+C:\Users\timeo\Desktop\project c#\ElapsEncryption\ElapsEncryption\obj\Release\ElapsEncryption.csproj.ResolveComReference.cache

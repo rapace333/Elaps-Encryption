@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace ElapsEncryption
 {
     internal class EncryptionCore
@@ -70,8 +72,9 @@ namespace ElapsEncryption
             }
         }
 
-        public void SecureDeleteFile(string filePath)
+        public static void SecureDeleteFile(string filePath)
         {
+
             const int bufferSize = 1024;
             const int bytesToOverwrite = bufferSize; 
 
@@ -102,6 +105,8 @@ namespace ElapsEncryption
                 MessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        
 
         public string EncryptString(string plainText, string password)
         {
@@ -135,6 +140,10 @@ namespace ElapsEncryption
                 }
             }
         }
+
+
+        
+
 
         public string DecryptString(string encryptedText, string password)
         {

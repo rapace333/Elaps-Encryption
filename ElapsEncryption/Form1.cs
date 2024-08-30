@@ -123,7 +123,6 @@ namespace ElapsEncryption
 
         private void Decrypt(object sender, EventArgs e)
         {
-
             string password = InputBox.Show("Enter your password:", "Password");
 
             string encryptedFolderPath = Path.Combine(fileFolder, "files\\encrypted\\");
@@ -176,7 +175,20 @@ namespace ElapsEncryption
                     {
                         try
                         {
-                            encryptionCore.SecureDeleteFile(filePath);
+
+                            Console.WriteLine("trying to delete " + filePath + " from recent shortcut");
+
+                            try
+                            {
+                                RecentFilesCleaner.RemoveFileFromRecentFiles(filePath);
+                                Console.WriteLine(filePath + " has been deleted from recent shortcut");
+                            }
+                            catch(Exception ex) {
+                                Console.WriteLine("error when trying to delete " + filePath + $" from recent shortcut : {ex.Message}");
+                            }
+
+                            Console.WriteLine("trying to delete " + filePath);
+                            EncryptionCore.SecureDeleteFile(filePath);
                             Console.WriteLine("The file has been secured and deleted.");
                         }
                         catch (Exception ex)
