@@ -32,7 +32,6 @@ namespace ElapsEncryption
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool ReleaseCapture();
 
-        EncryptionCore encryptionCore = new EncryptionCore();
         private static readonly RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
         static string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
         static string fileFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Elaps\\ElapsEncryption" );
@@ -105,9 +104,9 @@ namespace ElapsEncryption
 
                     foreach (string filePath in files)
                     {
-                        string encryptedString = encryptionCore.EncryptString(Path.GetFileName(filePath), password).Replace("/", "$");
+                        string encryptedString = EncryptionCore.EncryptString(Path.GetFileName(filePath), password).Replace("/", "$");
 
-                        encryptionCore.EncryptFile(filePath, Path.Combine(fileFolder, "files\\encrypted\\" + encryptedString + ".ElapsEncryption"), password);
+                        EncryptionCore.EncryptFile(filePath, Path.Combine(fileFolder, "files\\encrypted\\" + encryptedString + ".ElapsEncryption"), password);
                     }
                 }
                 else
@@ -135,10 +134,10 @@ namespace ElapsEncryption
 
                     foreach (string filePath in files)
                     {
-                        string decryptedString = encryptionCore.DecryptString(Path.GetFileNameWithoutExtension(filePath).Replace("$", "/"), password);
+                        string decryptedString = EncryptionCore.DecryptString(Path.GetFileNameWithoutExtension(filePath).Replace("$", "/"), password);
                         if (decryptedString != "*")
                         {
-                            encryptionCore.DecryptFile(filePath, Path.Combine(fileFolder, "files\\decrypted\\" + decryptedString), password);
+                            EncryptionCore.DecryptFile(filePath, Path.Combine(fileFolder, "files\\decrypted\\" + decryptedString), password);
                         }
                     }
                 }
@@ -188,8 +187,8 @@ namespace ElapsEncryption
                             }
 
                             Console.WriteLine("trying to delete " + filePath);
-                            EncryptionCore.SecureDeleteFile(filePath);
-                            Console.WriteLine("The file has been secured and deleted.");
+                            SecureDelete.SecureDeleteFile(filePath);
+                            Console.WriteLine(filePath + " has been secured and deleted.");
                         }
                         catch (Exception ex)
                         {

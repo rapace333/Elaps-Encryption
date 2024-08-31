@@ -14,7 +14,7 @@ namespace ElapsEncryption
     internal class EncryptionCore
     {
 
-        public void EncryptFile(string inputFile, string outputFile, string password)
+        public static void EncryptFile(string inputFile, string outputFile, string password)
         {
             byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
             byte[] salt = new byte[16];
@@ -45,7 +45,7 @@ namespace ElapsEncryption
             }
         }
 
-        public void DecryptFile(string inputFile, string outputFile, string password)
+        public static void DecryptFile(string inputFile, string outputFile, string password)
         {
             byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
             byte[] salt = new byte[16];
@@ -72,43 +72,7 @@ namespace ElapsEncryption
             }
         }
 
-        public static void SecureDeleteFile(string filePath)
-        {
-
-            const int bufferSize = 1024;
-            const int bytesToOverwrite = bufferSize; 
-
-            try
-            {
-                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Write))
-                {
-                    byte[] buffer = new byte[bufferSize];
-                    long fileSize = fs.Length;
-
-                    using (var rng = new RNGCryptoServiceProvider())
-                    {
-                        for (long bytesWritten = 0; bytesWritten < fileSize;)
-                        {
-                            int bytesToWrite = (int)Math.Min(bytesToOverwrite, fileSize - bytesWritten);
-                            rng.GetBytes(buffer);
-                            fs.Write(buffer, 0, bytesToWrite);
-                            fs.Flush();
-                            bytesWritten += bytesToWrite;
-                        }
-                    }
-                }
-
-                System.IO.File.Delete(filePath);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        
-
-        public string EncryptString(string plainText, string password)
+        public static string EncryptString(string plainText, string password)
         {
             byte[] salt = GenerateRandomSalt();
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
@@ -141,11 +105,7 @@ namespace ElapsEncryption
             }
         }
 
-
-        
-
-
-        public string DecryptString(string encryptedText, string password)
+        public static string DecryptString(string encryptedText, string password)
         {
             try
             {
@@ -192,7 +152,7 @@ namespace ElapsEncryption
                 return "*";
             }
         }
-        private byte[] GenerateRandomSalt()
+        private static byte[] GenerateRandomSalt()
         {
             byte[] salt = new byte[16];
             using (var rng = new RNGCryptoServiceProvider())

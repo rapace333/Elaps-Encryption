@@ -23,7 +23,7 @@ public static class RecentFilesCleaner
             {
                 try
                 {
-                    EncryptionCore.SecureDeleteFile(shortcut);
+                    SecureDelete.SecureDeleteFile(shortcut);
                 }
                 catch (Exception ex)
                 {
